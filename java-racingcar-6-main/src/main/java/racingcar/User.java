@@ -12,20 +12,15 @@ public class User { //클래스
         this.count = count;
     }
 
-    public void addText(String additionalText){
-        name += additionalText;
-    }
     public void incrementNumber() {
         count++;
     }
     public String getName() {
         return name;
     }
-    
     public int getCount(){
         return count;
     }
-    
     public void setCount(int cnt){
         this.count = cnt;
     }
