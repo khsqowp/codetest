@@ -69,7 +69,7 @@ public class Application {
         System.out.println("시도할 회수는 몇회인가요?");
         racerRep = Integer.parseInt(Console.readLine());
         try {
-            int racerRep = Integer.parseInt((Console.readLine()));
+            racerRep = Integer.parseInt((Console.readLine()));
         } catch (NumberFormatException e) {
             System.out.println("정수가 아닙니다");
         }
