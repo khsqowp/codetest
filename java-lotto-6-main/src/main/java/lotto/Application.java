@@ -1,6 +1,7 @@
 package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
+import java.sql.Array;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +15,13 @@ public class Application {
     static int money;
     static int chance = 0;
     static int bonusNum = 0;
-    static int matchConut = 0;
+    static int matchCountBonus = 0;
     public static List<Integer> lotto = new ArrayList<>();
     public static List<Integer> randomWinningNum = new ArrayList<>();
     public static List<Integer> ticket = new ArrayList<>();
     public static List<ArrayList<Integer>> ticketList = new ArrayList<ArrayList<Integer>>();
-
+    public static List<Integer> matchCounts = new ArrayList<>();
+    public static List<Integer> matchBonusL = new ArrayList<>();
     static void InputTicket(){
         //금액 입력 메서도, 오류체크
         money = Integer.parseInt(Console.readLine());
@@ -110,12 +112,22 @@ public class Application {
         }
     }
 
-    static void CompareOneLotto(){
-         matchConut = 0;
-        for(int number : lotto){
-            if(lotto.contains(number)){
-                matchConut++;
-            }
+    static void CompareOneLotto(List<ArrayList<Integer>> ticketList){
+         int matchCount = 0;
+         for(int i = 0; i < winningCount; i++){
+             if(ticket.contains(lotto.get(i))){
+                 matchCount++;
+             }
+         }
+         matchCounts.add(matchCount);
+         for(int i = 0; i < winningCount; i++){
+             if(ticket.contains(bonusNum)){
+                 matchBonusL.add(1);
+             }
+         }
+        for(Integer number : ticket){
+            if(lotto.contains(number)) matchCount++;
+        matchCounts.add(matchCount);
         }
 
     }
@@ -128,6 +140,7 @@ public class Application {
 
     static void CompareAllLotto() {
         for(int i = 0; i < chance; i++){
+            CompareOneLotto();
 
         }
     }
@@ -144,7 +157,7 @@ public class Application {
         InputBonusNum();
 
         System.out.println("당첨 통계 \n ---");
-        System.out.println("3개 일치 (5,000원) - " + + "개");
+        System.out.println("3개 일치 (5,000원) - " +  + "개");
         System.out.println("4개 일치 (50,000원) - " + + "개");
         System.out.println("5개 일치 (1,500,000원) - " + + "개");
         System.out.println("5개 일치, 보너스볼 일치 (30,000,000원) - " + + "개");
